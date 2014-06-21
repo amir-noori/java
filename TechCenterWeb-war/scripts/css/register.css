@@ -1,0 +1,72 @@
+body{
+	background: fixed;
+	background-repeat:no-repeat;
+	background-image: -moz-linear-gradient(#283858 , black);
+	background-image: -webkit-linear-gradient(#283858 , black);
+	background-image: -o-linear-gradient(#283858 , black);
+	background-image: -ms-linear-gradient(#283858 , black);
+	background-image: linear-gradient(#283858 , black);
+}
+
+h2{
+		text-align: center;
+		color: silver;
+}
+
+#parent{
+	/*
+	height: 700px;
+	width: 1400px;
+
+	background-image: -moz-linear-gradient(#283858, black);
+	background-image: -webkit-linear-gradient(#283858, black);
+	background-image: -o-linear-gradient(#283858, black);
+	background-image: -ms-linear-gradient(#283858, black);
+	background-image: linear-gradient(#283858, black);
+	*/
+
+}
+
+#registerForm{
+
+	background-image: -moz-linear-gradient(#0A4A2C, #157142);
+	background-image: -webkit-linear-gradient(#0A4A2C, #157142);
+	background-image: -o-linear-gradient(#0A4A2C, #157142);
+	background-image: -ms-linear-gradient(#0A4A2C, #157142);
+	background-image: linear-gradient(#0A4A2C, #157142);
+
+	position:absolute;
+	border-radius: 10px;
+	border: solid;
+	border-width: 2px;
+	border-color: #ccc;
+	opacity: 0.9;
+	color: white;
+	width: 700px;
+	height: 510px;
+	left: 70px;
+	top: 150px;
+}
+
+.in{
+	top: 10px;
+	border-radius: 5px;
+	text-align: center;
+	vertical-align: middle;
+	margin-right: 290px;
+	float: right;
+	background-color: #FCE7E3;
+	/*
+	background-image: linear-gradient(#FCC6B8 , white);
+	background-image: -moz-linear-gradient(#FCC6B8 , white);
+	background-image: -webkit-linear-gradient(#FCC6B8 , white);
+	background-image: -o-linear-gradient(#FCC6B8 , white);
+	background-image: -ms-linear-gradient(#FCC6B8 , white);
+	background-image: linear-gradient(#FCC6B8 , white);
+	*/
+}
+
+#captica{
+	margin-right: 225px;
+	float: right;
+}

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config version="2.0" xmlns="http://java.sun.com/xml/ns/javaee"
+ xmlns:xi="http://www.w3.org/2001/XInclude"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+ <managed-bean>
+  <managed-bean-name>user</managed-bean-name>
+  <managed-bean-class>com.techcenter.web.User</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>userController</managed-bean-name>
+  <managed-bean-class>com.techcenter.web.UserController</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>captica</managed-bean-name>
+  <managed-bean-class>com.techcenter.web.Captica</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>usersInfo</managed-bean-name>
+  <managed-bean-class>com.techcenter.web.UsersInfo</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>editUser</managed-bean-name>
+  <managed-bean-class>com.techcenter.web.EditUser</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>userSearchBean</managed-bean-name>
+  <managed-bean-class>com.techcenter.web.UserSearchBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>fileUpload</managed-bean-name>
+  <managed-bean-class>com.techcenter.web.FileUpload</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <navigation-rule>
+  <from-view-id>/cms/*</from-view-id>
+  <navigation-case>
+   <from-action>#{userController.accessDenied()}</from-action>
+   <from-outcome>access-denied</from-outcome>
+   <to-view-id>/cms/access-denied.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/login.xhtml</from-view-id>
+  <navigation-case>
+   <if>#{userController.checkUser(user.userName , user.password)}</if>
+   <to-view-id>/cms/main.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/cms/main.xhtml</from-view-id>
+  <navigation-case>
+   <from-action>#{userEdit.editNav()}</from-action>
+   <from-outcome>editUser</from-outcome>
+   <to-view-id>/cms/editUser.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+</faces-config>

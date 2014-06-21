@@ -1,0 +1,66 @@
+ <html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+<style type="text/css">
+
+.name{
+	display: none;
+}
+
+.progress{
+	display: none;
+}
+
+</style>
+
+</h:head>
+
+  <h:body>
+  <f:view>
+  <div id="x">
+  	 <div id="y">
+      <h:form id="form" enctype="multipart/form-data">
+
+         <p:fileUpload value="#{fileUpload.file}" fileUploadListener="#{fileUpload.upload}" showButtons="false" style="width:300px;" onclick="uploadImage()" /><br />
+
+     </h:form>
+   </div>
+ </div>
+ <hr />
+ 	<div id="z">
+
+ 	</div>
+ </f:view>
+  </h:body>
+
+<script type="text/javascript">
+
+function uploadImage()
+{
+
+	
+		var preview = $('.preview');
+		var name = $('.name');
+		var size = $('.size');
+		var progress = $('.progress');
+		var start = $('.start');
+		var cancel = $('.cancel');
+
+		//preview.css('display' , 'none');
+		//name.css('display' , 'none');
+		//size.css('display' , 'none');
+		//progress.css('display' , 'none');
+		//start.css('display' , 'none');
+		//cancel.css('display' , 'none');
+
+		document.getElementById().innerHTML =  name.text();
+	
+}
+
+</script>
+
+</html>

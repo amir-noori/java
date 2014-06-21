@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<link rel="stylesheet" type="text/css" href="../scripts/css/register.css" />
+<title>Register</title>
+</head>
+
+<body>
+<f:view xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<div id="parent">
+		<h2>You can register below:</h2><hr />
+
+		<div id="registerForm">
+		<br />
+			<h:form id="register">
+				<h:outputLabel value="User Name: " />
+				<h:inputText class="in" value="#{user.userName}" required="true" size="40" /><br /><br />
+				<h:outputLabel value="Email: " />
+				<h:inputText class="in" value="#{user.userName}" required="true" size="40" /><br /><br />
+				<h:outputLabel value="Password: " />
+				<h:inputSecret class="in" value="#{user.password}" required="true" size="40" /><br /><br />
+				<h:outputLabel value="Retype Password: " />
+				<h:inputSecret class="in" value="#{user.password}" required="true" size="40" /><br /><br /><br />
+				<div id="captica">
+				<h:outputText value="#{captica.showCaptica()}" escape="false" /><br />
+				</div>
+				<!--<h:commandButton value="Submit" action="" /><br />-->
+			</h:form>
+		</div>
+</div>
+</f:view>
+</body>
+
+</html>

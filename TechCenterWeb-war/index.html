@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+
+	<script type="text/javascript">
+		function send(){
+			var userName = document.getElementById('userName');
+			var password = document.getElementById('password')
+			var form = document.getElementById('form');
+			if(!(userName.value) || !(password.value))
+			{
+				alert("Both user name and password are required.");
+				form.onsubmit = function()
+				{
+					return false;
+				}
+			}
+			else
+			{
+				form.submit();	
+			}
+	
+		}
+	</script>
+
+</head>
+<body style="background-color:#ccc;">
+	<br><br><br><br><br><br><hr>
+	<div style="background-color:#bbb; height: 200px; width: 300px;">
+	<form id="form" action="http://localhost:8080/TechCenterWeb/HelloTechCenter"><br><br>
+	&nbsp User Name :&nbsp <input id="userName" type="text" name="name"><br><br>
+	&nbsp Passwrod  :&nbsp&nbsp<input id="password" type="text" name="password"><br>
+	<input type="submit" value="Send" onClick="send()"> 
+	</form>
+	</div>
+	<hr>
+</body>
+</html>

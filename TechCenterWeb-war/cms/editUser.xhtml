@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 	xmlns="http://www.w3.org/1999/xhtml" 
+		xmlns:ui="http://java.sun.com/jsf/facelets" 
+		xmlns:h="http://java.sun.com/jsf/html" 
+		xmlns:f="http://java.sun.com/jsf/core" 
+		xmlns:c="http://java.sun.com/jsp/jstl/core"
+		xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+<title>Welcome <h:outputText value="#{userController.user.userName}" escape="false" /></title>
+
+<link rel="stylesheet" href="../scripts/css/editUser.css" type="text/css" />
+
+
+
+</h:head>
+
+<body>
+<f:view xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets">
+
+        <f:event type="preRenderView" listener="#{userController.accessDenied()}"/>
+		
+		<h1>Edit User</h1>
+		<br /><br />
+		<div id="head">
+		<div id="tabs">
+			<ul>
+				<li><a onclick="userManagement()"><span>User Management</span></a></li>
+				<li><a onclick="contentManagement()"><span>Content Management</span></a></li>
+				<li><a onclick="other()"><span>Other</span></a></li>
+			</ul>
+		</div>
+		</div><br />
+		
+		<div id="middle"><br />
+		<h:form>
+				<div id="usersToolbar">
+					<p></p>
+				</div>
+
+				<hr />
+			
+
+				<div id="users">
+					<div id="imageArea">
+						<div id="profileImage">
+							
+						</div>
+						<hr />	
+						<h:form id="form" enctype="multipart/form-data">
+         					<p:fileUpload value="#{fileUpload.file}" fileUploadListener="#{fileUpload.upload}" showButtons="false" style="width:199px; margin-top:150px;margin-left:30px;">
+         						<c:set target="#{fileUpload}" scope="view" property="userName" value="#{editUser.userInfoList['userName']}"/>
+         					</p:fileUpload>
+
+         					
+         					<br />
+         					<h:inputText id="userName" value="#{editUser.userInfoList['userName']}" size="40" class="inputText" />
+     					</h:form>				
+					</div>
+
+					<div id="editData">
+					<h:form>
+						<h:outputLabel value="ID : " class="outputLable"></h:outputLabel>
+						<h:inputText  id="id" value="#{editUser.userInfoList['id']}" size="40" class="inputText">
+							<f:ajax  listener="#{editUser.saveInfo()}" render="@all"/>
+							<f:validator validatorId="idValidator" for="id" />
+						</h:inputText> <br /><br />
+
+						<h:outputLabel value="User Name : " class="outputLable"></h:outputLabel>
+						<h:inputText id="userName" value="#{editUser.userInfoList['userName']}" size="40" class="inputText">
+							<f:ajax listener="#{editUser.saveInfo()}" render="@all"/>
+							<f:validator validatorId="userNameValidator" for="userName" />
+						</h:inputText> <br /><br />
+
+						<h:outputLabel value="Password :" class="outputLable"></h:outputLabel>
+						<h:inputText value="#{editUser.userInfoList['password']}" size="40" class="inputText">
+							<f:ajax listener="#{editUser.saveInfo()}" />
+						</h:inputText> <br /><br />
+
+						<h:outputLabel value="E-Mail : " class="outputLable"></h:outputLabel>
+						<h:inputText id="mail" value="#{editUser.userInfoList['mail']}" size="40" class="inputText">
+							<f:ajax  listener="#{editUser.saveInfo()}" render="@all"/>
+							<f:validator validatorId="emailAddressValidator" for="mail" />
+						</h:inputText> <br /><br />
+						
+						<div class="radio">
+							<div class="radioLabel"><h:outputLabel value="Is Admin : " class="outputLable"></h:outputLabel></div>							
+							<h:selectOneRadio value="#{editUser.userInfoList['isAdmin']}"><f:ajax listener="#{editUser.saveInfo()}" />
+								<f:selectItem itemValue="true" itemLabel="Yes" />
+								<f:selectItem itemValue="false" itemLabel="No" />
+							</h:selectOneRadio>
+							<br /><br />
+							<div class="radioLabel"><h:outputLabel value="Is Super Admin : " class="outputLable"></h:outputLabel></div>
+							<h:selectOneRadio id="isSuperAdmin" value="#{editUser.userInfoList['isSuperAdmin']}">
+
+							<f:ajax event="change" listener="#{editUser.saveInfo()}" render="@all"/>
+							<f:validator validatorId="superAdminPrivilegeValidator" for="isSuperAdmin" />
+
+								<f:selectItem itemValue="true" itemLabel="Yes" />
+								<f:selectItem itemValue="false" itemLabel="No" />
+							</h:selectOneRadio>
+						</div>
+						
+						<br /><br />
+						<h:commandButton action="#{editUser.saveInfo()}" value="Save" style="margin-left:50px;">	
+							<f:ajax event="click" render="@all" listener="#{editUser.saveInfo()}" />
+						</h:commandButton>
+
+						<br /><br />
+						<p>
+							<h:message for="id" showSummary="true" showDetail="true" style="color:red; display:block" />
+							<h:message for="userName" showSummary="true" showDetail="true" style="color:red; display:block" />
+							<h:message for="mail" showSummary="true" showDetail="true" style="color:red; display:block" />
+							<h:message for="isSuperAdmin" showSummary="true" showDetail="true" style="color:red; display:block" />
+						</p>
+
+					</h:form>
+					</div>
+				</div>
+	
+		</h:form> 
+
+		</div>
+		
+</f:view>
+</body>
+
+
+<script>
+
+
+	function userManagement()
+	{	
+		var url = location.href;
+		var lastSlash = url.lastIndexOf('/');		
+		url = url.substring(0 , lastSlash + 1);
+		url += 'main.xhtml?userManagement=1';
+		location.href = url;
+	}	
+	
+	function contentManagement()
+	{
+		var url = location.href;
+		var lastSlash = url.lastIndexOf('/');		
+		url = url.substring(0 , lastSlash + 1);
+		url += 'main.xhtml?contentManagement=1';
+		location.href = url;
+	}
+	
+	function other()
+	{
+		var url = location.href;
+		var lastSlash = url.lastIndexOf('/');
+		url = url.substring(0 , lastSlash + 1);
+		url += 'main.xhtml?other=1';
+		location.href = url;		
+	}
+	
+	function confirmDelete()
+	{
+		var r = confirm("Are you sure you wana delete this user?");
+		if (r==true)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	function noImage()
+	{
+		var imgDiv = document.getElementById('profileImage');
+		var imgDivContent = imgDiv.innerHTML;
+		imgDivContent = imgDivContent.replace(/^\s+/,'');
+		if( imgDivContent == '')
+		imgDiv.innerHTML = 'No Image';
+	}
+	noImage();
+
+</script>
+
+</html>

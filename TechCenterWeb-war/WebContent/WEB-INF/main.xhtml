@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"  xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<head>
+<title>Welcome <h:outputText value="#{userController.user.userName}" escape="false" /></title>
+
+<link rel="stylesheet" href="../scripts/css/main.css" type="text/css" />
+
+<script>
+	function userManagement()
+	{
+
+		document.getElementById('contentToolbar').style.display = 'none';
+		document.getElementById('otherToolbar').style.display = 'none';
+		document.getElementById('usersToolbar').style.display = 'block';
+
+
+	}
+	
+	function contentManagement()
+	{
+
+		document.getElementById('usersToolbar').style.display = 'none';
+		document.getElementById('otherToolbar').style.display = 'none';
+		document.getElementById('contentToolbar').style.display = 'block';
+
+
+	}
+	
+	function other()
+	{
+
+		document.getElementById('usersToolbar').style.display = 'none';
+		document.getElementById('contentToolbar').style.display = 'none';
+		document.getElementById('otherToolbar').style.display = 'block';
+
+	}
+
+</script>
+</head>
+
+<body>
+<f:view xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets">
+        <f:event type="preRenderView" listener="#{userController.accessDenied()}"/>
+		<h1>Login Success</h1>
+		<br /><br />
+		<div id="head">
+		<div id="tabs">
+			<ul>
+			<h:form>
+					<!--<li><h:commandLink action="#{userController.user.isSuperAdmin}"><f:ajax render=":test" execute="@all" /><span>User Management</span></h:commandLink></li>-->
+					<li><h:commandLink onclick="userManagement()"><span>User Management</span></h:commandLink></li>
+					<li><h:commandLink onclick="contentManagement()"><span>Content Management</span></h:commandLink></li>
+					<li><h:commandLink onclick="other()"><span>Other</span></h:commandLink></li>
+			</h:form>		
+			</ul>
+		</div>
+		</div><br />
+		
+		<c:forEach var="users" items="#{editUser.edit()}">
+						<hr />
+						<h:outputLabel value="${users}" />
+						<h:selectOneRadio value="${user[isAdmin]}"></h:selectOneRadio>
+						
+					</c:forEach>
+		<c:forEach items="#{usersInfo.getAllUserInfoList()}"></c:forEach>
+
+		<div id="middle"><br />
+			<h:form>
+				<div id="usersToolbar">
+					<p><h:commandLink>Super Admins</h:commandLink><h:commandLink>Admins</h:commandLink><h:commandLink>Users</h:commandLink></p>
+				</div>
+			</h:form>
+			<h:form>
+				<div id="contentToolbar">
+					<p><h:commandLink>Content</h:commandLink></p>
+				</div>
+			</h:form>
+			<h:form>
+				<div id="otherToolbar">
+					<p><h:commandLink>Other</h:commandLink></p>
+				</div>
+			</h:form>
+			<hr />
+			
+			<div id="users">
+				<c:forEach var="admin" items="#{usersInfo.getAllAdmins()}">
+					<tr>
+					<td>${admin}</td><br />
+					</tr>
+				</c:forEach>
+			</div>
+		</div>
+</f:view>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#cms#*" PATH="/cms/*" SHAPE="40,48,53,42" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#cms#*:0" NAME="item" PATH="/cms/*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="access-denied:#{userController.accessDenied()}:#cms#access-denied.xhtml"
+    NAME="output" PATH="/cms/access-denied.xhtml"
+    TARGET="rules:#cms#access-denied.xhtml"
+    TITLE="#{userController.accessDenied()}:access-denied" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#login.xhtml" PATH="/login.xhtml"
+  SHAPE="40,304,50,41" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#login.xhtml:0" NAME="item"
+   PATH="/login.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="::#cms#main.xhtml" NAME="output"
+    PATH="/cms/main.xhtml" TARGET="rules:#cms#main.xhtml" TITLE="[any]" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#cms#access-denied.xhtml"
+  PATH="/cms/access-denied.xhtml" SHAPE="520,40,50,25" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#cms#main.xhtml" PATH="/cms/main.xhtml"
+  SHAPE="248,320,50,41" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#cms#main.xhtml:0" NAME="item"
+   PATH="/cms/main.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="editUser:#{userEdit.editNav()}:#cms#editUser.xhtml"
+    NAME="output" PATH="/cms/editUser.xhtml"
+    TARGET="rules:#cms#editUser.xhtml"
+    TITLE="#{userEdit.editNav()}:editUser" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#cms#editUser.xhtml"
+  PATH="/cms/editUser.xhtml" SHAPE="456,304,50,25" model-entity="JSFProcessGroup"/>
+</PROCESS>

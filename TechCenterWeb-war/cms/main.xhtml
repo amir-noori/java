@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 	xmlns="http://www.w3.org/1999/xhtml" 
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"  
+		xmlns:f="http://java.sun.com/jsf/core" 
+		xmlns:c="http://java.sun.com/jsp/jstl/core"
+		xmlns:ckeditor="http://ckeditor.com"
+		xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+<title>Welcome</title>
+
+<link rel="stylesheet" href="../scripts/css/main.css" type="text/css" />
+<link rel="stylesheet" href="../scripts/lib/jquery-ui-1.9.2.custom/css/smoothness/jquery-ui-1.9.2.custom.min.css" type="text/css" />
+<script src="../scripts/lib/jquery-ui-1.9.2.custom/js/jquery-1.8.3.js"></script>
+<script src="../scripts/lib/jquery-ui-1.9.2.custom/js/jquery-ui-1.9.2.custom.js"></script>
+<script type="text/javascript" src="../scripts/lib/ckeditor/ckeditor.js?t=B37D54V"></script>
+
+</h:head>
+
+<h:body>
+<f:view xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets">
+
+        <f:event type="preRenderView" listener="#{userController.accessDenied()}"/>
+		
+		<h1>Welcome  <h:outputText value="#{userController.user.userName}" /></h1>
+		<br /><br />
+		<div id="head">
+		<div id="tabs">
+			<ul>
+				<li><a href="#" onclick="userManagement()"><span>User Management</span></a></li>
+				<li><a href="#" onclick="contentManagement()"><span>Content Management</span></a></li>
+				<li><a href="#" onclick="other()"><span>Other</span></a></li>
+			</ul>
+		</div>
+		</div><br />
+		
+		<div id="middle"><br />
+		<h:form>
+				<div id="usersToolbar">
+					<p>
+
+					   <h:commandLink action="#{usersInfo.handleTabChange()}">Super Admins
+							<f:param name="roleIndex" value="1" />
+							<f:ajax event="click" render="@all" listener="#{usersInfo.handleTabChange()}" />
+					   </h:commandLink>
+					   <h:commandLink action="#{usersInfo.handleTabChange()}">Admins
+							<f:param name="roleIndex" value="2"  />
+							<f:ajax event="click" render="@all" listener="#{usersInfo.handleTabChange()}" />
+					   </h:commandLink>
+					   <h:commandLink action="#{usersInfo.handleTabChange()}">Users
+							<f:param name="roleIndex" value="3"  />
+							<f:ajax event="click" render="@all" listener="#{usersInfo.handleTabChange()}" />
+					   </h:commandLink>
+					</p>
+				</div>
+
+				<div id="contentToolbar">
+					<p><a href="#" >Content</a></p>
+				</div>
+
+				<div id="otherToolbar">
+					<p><a href="#" >Other</a></p>
+				</div>
+
+				<hr />
+			
+
+				<div id="users">
+					<div id="usersList">
+						<h:panelGroup rendered="#{usersInfo.handleTabChange() == 1}">
+							<table id="usersInfoTable" cellspacing="1px">
+								<tr><th>ID</th><th>UserName</th><th>E-Mail</th><th>Edit</th><th>Delete</th></tr>
+								<c:forEach var="user" items="#{usersInfo.getAllSuperAdminInfoList()}">
+								<tr>
+								
+									<td>
+										#{user.value[0]}
+									</td>
+									<td>
+										#{user.value[1]}
+									</td>
+									<td>
+										#{user.value[2]}
+									</td>
+									<td id="editUser">
+										<h:commandLink action="#{editUser.editNav()}" >edit<f:param name="roleIndex" value="1" /><f:param name="edit" value="#{user.value[1]}" /></h:commandLink>
+									</td>
+									<td id="deleteUser">	
+											<h:commandLink onclick="confirmDelete()">delete</h:commandLink>
+											<f:param name="edit" value="#{user.value[1]}"  />
+									</td>
+								
+								</tr>
+								</c:forEach>
+							</table>
+						</h:panelGroup>
+						<h:panelGroup rendered="#{usersInfo.handleTabChange() == 2}">
+							<table id="usersInfoTable" cellspacing="1px">
+								<tr><th>ID</th><th>UserName</th><th>E-Mail</th><th>Edit</th><th>Delete</th></tr>
+								<c:forEach var="user" items="#{usersInfo.getAllAdminInfoList()}">
+								<tr>
+								
+									<td>
+										#{user.value[0]}
+									</td>
+									<td>
+										#{user.value[1]}
+									</td>
+									<td>
+										#{user.value[2]}
+									</td>
+									<td id="editUser">
+										<h:commandLink action="#{editUser.editNav()}" >edit<f:param name="roleIndex" value="2" /><f:param name="edit" value="#{user.value[1]}" /></h:commandLink>
+									</td>
+									<td id="deleteUser">	
+											<h:commandLink onclick="confirmDelete()">delete</h:commandLink>
+											<f:param name="edit" value="#{user.value[1]}"  />
+									</td>
+								
+								</tr>
+								</c:forEach>
+							</table>
+						</h:panelGroup>
+						<h:panelGroup rendered="#{usersInfo.handleTabChange() == 3}">
+							<table id="usersInfoTable" cellspacing="1px">
+								<tr><th>ID</th><th>UserName</th><th>E-Mail</th><th>Edit</th><th>Delete</th></tr>
+								<c:forEach var="user" items="#{usersInfo.getAllUserInfoList(15)}">
+								<tr>
+								
+									<td>
+										#{user.value[0]}
+									</td>
+									<td>
+										#{user.value[1]}
+									</td>
+									<td>
+										#{user.value[2]}
+									</td>
+									<td id="editUser">
+										<h:commandLink action="#{editUser.editNav()}" >edit<f:param name="roleIndex" value="3" /><f:param name="edit" value="#{user.value[1]}" /></h:commandLink>
+									</td>
+									<td id="deleteUser">	
+											<h:commandLink onclick="confirmDelete()">delete</h:commandLink>
+											<f:param name="edit" value="#{user.value[1]}"  />
+									</td>
+								
+								</tr>
+								</c:forEach>
+							</table>
+
+							<div class="scroll-pane ui-widget ui-widget-header ui-corner-all">
+								<div id="scrollContent" class="scroll-content">
+									<div class="scroll-content-item ui-widget-header">10</div>
+								</div>
+							<div class="scroll-bar-wrap ui-widget-content ui-corner-bottom">
+								<div class="scroll-bar"></div>
+							</div>
+							</div>
+						</h:panelGroup>
+					</div>
+					<div id="usersSearch">
+					
+						<div>
+							<h:outputLabel value="Search User : " />
+							<h:inputText id="searchText" value="#{userSearchBean.searchString}">
+								<f:ajax render="@all" event="change" listener="#{userSearchBean.searchAll()}" />
+							</h:inputText>
+						</div>
+						<hr />
+						<div>
+							<c:if test="#{!(userSearchBean.searchString == null)}">
+								<c:if test="#{!(userSearchBean.searchString.isEmpty())}">
+									<c:if test="#{(userSearchBean.searchAll()) == null}">
+										<h:outputLabel value="No Results Found!" />
+									</c:if>
+								</c:if>
+							</c:if>
+							<c:if test="#{!(userSearchBean.searchString.isEmpty())}">
+								<ui:repeat var="name" value="#{userSearchBean.searchAll()}">
+									<h:commandLink action="#{editUser.editNav()}" value="${name}">
+										<f:param name="roleIndex" value="3" />
+										<f:param name="edit" value="${name}" />
+									</h:commandLink><br /><br />
+								</ui:repeat>
+							</c:if>
+						</div>
+						
+					</div>
+				</div>
+
+				<div id="content">
+
+					<div id="editorArea">
+						<h:form>
+						<p>
+							<textarea cols="50" id="editor1" name="editor1" rows="15"></textarea>
+						</p>
+						<p>
+							<h:commandButton value="Save" />
+						</p>
+						</h:form>
+					</div>
+					<div id="treeBrowser">
+
+					</div>
+				</div>
+	
+		</h:form> 	
+		</div>
+		
+</f:view>
+<p> &#169; Copyright by Amir Noori 2012 - EMail: public.amirnoori@gmail.com</p>
+</h:body>
+
+
+<script>
+
+
+	function userManagement()
+	{
+		document.getElementById('contentToolbar').style.display = 'none';
+		document.getElementById('otherToolbar').style.display = 'none';
+		document.getElementById('content').style.display = 'none';
+		document.getElementById('users').style.display = 'block';
+		document.getElementById('usersToolbar').style.display = 'block';
+	}
+	
+	function contentManagement()
+	{
+		document.getElementById('usersToolbar').style.display = 'none';
+		document.getElementById('otherToolbar').style.display = 'none';
+		document.getElementById('users').style.display = 'none';
+		document.getElementById('contentToolbar').style.display = 'block';
+		document.getElementById('content').style.display = 'block';
+	}
+	
+	function other()
+	{
+		document.getElementById('usersToolbar').style.display = 'none';
+		document.getElementById('contentToolbar').style.display = 'none';
+		document.getElementById('content').style.display = 'none';
+		document.getElementById('users').style.display = 'none';
+		document.getElementById('otherToolbar').style.display = 'block';
+		
+	}
+	
+	function confirmDelete()
+	{
+		var r = confirm("Are you sure you wana delete this user?");
+		if (r==true)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	function scrollContent()
+	{
+		var bar = document.getElementById('scrollContent');
+		var content = '';
+		eval('var max = <h:outputText value="#{usersInfo.countUsers()}" />');
+		var links = max/15;
+		for(var i = 0; i &#60; links ; i++)
+		{	
+			content += '<div class="scroll-content-item ui-widget-header"><a onclick="getNextResults(' + i + ')" href="/TechCenterWeb/faces/cms/main.xhtml?scrollIndex=' +i+ '">'+ i +'</a></div>';
+		}
+		bar.innerHTML = content;
+	}
+	window.onload = scrollContent();
+	
+	function getNextResults(i)
+	{	
+		var table = document.getElementById('usersInfoTable');
+		
+		table.innerHTML = 	'<tr><th>ID</th><th>UserName</th><th>E-Mail</th><th>Edit</th><th>Delete</th></tr>' +
+					'<c:forEach var="users" items="#{usersInfo.getAllUserInfoList(15)}">' +
+					'<tr><c:forEach var="info" items="#{users.value}">' +
+					'<td>${info}</td>' +
+					'</c:forEach><td id="editUser">edit</td><td id="deleteUser">delete</td></tr>' +
+					'</c:forEach>';		
+	}
+	
+	function checkUrl()
+	{
+		var url = location.href;
+	
+		if(url.indexOf('userManagement=1') != -1)
+		{
+			userManagement();
+		}
+		else if(url.indexOf('contentManagement=1') != -1)
+		{
+			contentManagement();
+		}
+		else if(url.indexOf('other=1') != -1)
+		{
+			other();
+		}
+	}
+	checkUrl();
+
+	CKEDITOR.replace( 'editor1', {uiColor: '#85B5D9'});
+
+</script>
+
+</html>

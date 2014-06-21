@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<link rel="stylesheet" type="text/css" href="../scripts/css/login.css" />
+<title>Insert title here</title>
+</head>
+
+<body>
+<f:view xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<div id="parent">
+		<h2>Welcome to TechCenter CMS</h2><hr />
+
+		<div id="loginForm">
+		<br />
+			<h:form>
+				<h:outputLabel value="User Name: " />
+				<h:inputText value="#{user.userName}" required="true" size="30" /><br /><br />
+				<h:outputLabel value="Password: " /> &#160;
+				<h:inputSecret value="#{user.password}" required="true" size="30" /><br /><br />
+				<h:commandButton value="Sign In" action="#{userController.checkUser(user.userName , user.password)}" /><br /><br />
+				<h:outputLabel  value="#{userController.checkUser(user.userName , user.password)}" />
+				<h:outputLabel  value="#{userController.user.getLogedIn()}" />
+
+			</h:form>
+		</div>
+</div>
+</f:view>
+</body>
+
+</html>

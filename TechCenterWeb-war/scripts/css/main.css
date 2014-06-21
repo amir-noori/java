@@ -1,0 +1,314 @@
+body{
+	font: bold 11px/1.5em Verdana;
+	background: fixed;
+	background-repeat:no-repeat;
+	background-color: #161616;
+	color: #ccc
+	/*
+	background-image: -moz-linear-gradient(#283858 , black);
+	background-image: -webkit-linear-gradient(#283858 , black);
+	background-image: -o-linear-gradient(#283858 , black);
+	background-image: -ms-linear-gradient(#283858 , black);
+	background-image: linear-gradient(#283858 , black);
+	*/
+}
+
+#head{
+	background-color: black;
+	display: block;
+    margin: 0;
+
+}
+
+#middle{
+	background-color: #ccc;
+	color: black;
+	width: 100%;
+	height: 600px;
+	display: block;
+	margin: 0;
+
+}
+
+h2{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:16px;
+	font-weight:bold;
+	text-align: center;
+	color: silver;
+}
+
+hr {
+	border:none;
+	border-top:1px solid #CCCCCC;
+	height:1px;
+}
+
+#parent{
+	/*
+	height: 700px;
+	width: 1400px;
+
+	background-image: -moz-linear-gradient(#283858, black);
+	background-image: -webkit-linear-gradient(#283858, black);
+	background-image: -o-linear-gradient(#283858, black);
+	background-image: -ms-linear-gradient(#283858, black);
+	background-image: linear-gradient(#283858, black);
+	*/
+
+}
+
+#registerForm{
+
+	background-image: -moz-linear-gradient(#0A4A2C, #157142);
+	background-image: -webkit-linear-gradient(#0A4A2C, #157142);
+	background-image: -o-linear-gradient(#0A4A2C, #157142);
+	background-image: -ms-linear-gradient(#0A4A2C, #157142);
+	background-image: linear-gradient(#0A4A2C, #157142);
+
+	position:absolute;
+	border-radius: 10px;
+	border: solid;
+	border-width: 2px;
+	border-color: #ccc;
+	opacity: 0.9;
+	color: white;
+	width: 700px;
+	height: 510px;
+	left: 70px;
+	top: 150px;
+}
+
+.in{
+	top: 10px;
+	border-radius: 5px;
+	text-align: center;
+	vertical-align: middle;
+	margin-right: 290px;
+	float: right;
+	background-color: #FCE7E3;
+	/*
+	background-image: linear-gradient(#FCC6B8 , white);
+	background-image: -moz-linear-gradient(#FCC6B8 , white);
+	background-image: -webkit-linear-gradient(#FCC6B8 , white);
+	background-image: -o-linear-gradient(#FCC6B8 , white);
+	background-image: -ms-linear-gradient(#FCC6B8 , white);
+	background-image: linear-gradient(#FCC6B8 , white);
+	*/
+}
+
+#captica{
+	margin-right: 225px;
+	float: right;
+}
+
+
+#tabs {
+	float:left;
+	width:100%;
+	background:#E4E6EB;
+	font-size:93%;
+	line-height:normal;
+}
+	
+#tabs ul {
+	margin:0;
+	padding:10px 10px 0 50px;
+	list-style:none;
+}
+	
+#tabs li {
+	display:inline;
+	margin:0;
+	padding:0;
+}
+	
+#tabs a {
+	float:left;
+	background:url("tableft.gif") no-repeat left top;
+	margin:0;
+	padding:0 0 0 4px;
+	text-decoration:none;
+}
+	
+#tabs a span {
+	float:left;
+	display:block;
+	background:url("tabright.gif") no-repeat right top;
+	padding:5px 15px 4px 6px;
+	color:#FFF;
+}
+	
+/* Commented Backslash Hack hides rule from IE5-Mac \*/
+#tabs a span {float:none;}
+
+/* End IE5-Mac hack */
+#tabs a:hover span {
+	color:#FFF;
+}
+	
+#tabs a:hover {
+	background-position:0% -42px;
+}
+	
+#tabs a:hover span {
+	background-position:100% -42px;
+}
+
+
+#usersToolbar{
+	display: block;
+	background-color: #16839C;
+}
+
+#usersToolbar a{
+	color: #ccc;
+	font-size: medium;
+	margin-left: 60px;
+}
+
+#usersToolbar a:hover {
+	color: #22E369;
+	font: italic;
+}
+
+
+#contentToolbar{
+	display: none;
+	background-color: #16839C;
+}
+
+#contentToolbar a{
+	color: #ccc;
+	font-size: medium;
+	margin-left: 60px;
+}
+
+#contentToolbar a:hover{
+	color: #22E369;
+	font: italic;
+}
+
+#otherToolbar{
+	display: none;
+	background-color: #16839C;
+}
+
+#otherToolbar a{
+	color: #ccc;
+	font-size: medium;
+	margin-left: 60px;
+}
+
+#otherToolbar a:hover{
+	color: #22E369;
+	font: italic;
+}
+
+#users{
+
+}
+
+#content{
+	display: none;
+}
+
+#usersInfoTable{
+	margin-left: 50px;
+	text-align: left;
+	border: medium;
+}
+
+#usersInfoTable tr:nth-child(odd) {background: #BBD4F0;}
+#usersInfoTable tr:nth-child(even) {background: #BBE9F0;}
+
+#usersInfoTable th{
+	background: #C3C9C9;
+	color: #035966;
+	font-size: 14px;
+}
+
+#usersInfoTable td{
+	margin-left: 30px;
+}
+
+#editUser a:hover{
+	color: #46C2BA;
+	font: italic;
+}
+
+#deleteUser a:hover{
+	color: red;
+	font: italic;
+}
+
+#usersSearch{
+	position: absolute;
+	float: right;
+	background-color: #88B3C2; 
+	width: 350px; 
+	height: 500px;
+	margin-left: 72%;
+    top: 150px;
+	border-radius: 5px;
+	border: solid;
+	border-radius: 5px;
+	border-width: 3px;
+	overflow-y: auto;
+}
+
+#usersSearch{
+	font-size: 12px;
+}
+
+#usersSearch label{
+	margin-left: 10px;
+	margin-top: 10px;
+	font: italic bold;
+}
+
+#usersSearch input{
+	border-radius: 10px;
+	margin-left: 10px;
+	margin-top: 10px;
+	text-align: center;
+	background-color: silver;
+}
+
+#usersSearch a{
+	margin-left: 20px;
+}
+
+#usersSearch a:hover{
+	color: blue;
+}
+
+/*scroll bar begin*/
+
+.scroll-pane { overflow: auto; width: 40%; margin-left: 400px; margin-top: 130px; overflow-y: hidden; margin-bottom: 0px;}
+.scroll-content { width: 2440px; float: left; }
+.scroll-content-item { width: 15px; height: 13px; float: left; margin: 10px; font-size: 1em; line-height: 12px; text-align: center; }
+* html .scroll-content-item { display: inline; } /* IE6 float double margin bug */
+.scroll-bar-wrap { clear: left; padding: 0 4px 0 2px; margin: 0 -1px -1px -1px; }
+.scroll-bar-wrap .ui-slider { background: none; border:0; height: 2em; margin: 0 auto;  }
+.scroll-bar-wrap .ui-handle-helper-parent { position: relative; width: 100%; height: 100%; margin: 0 auto; }
+.scroll-bar-wrap .ui-slider-handle { top:.2em; height: 1.5em; }
+.scroll-bar-wrap .ui-slider-handle .ui-icon { margin: -8px auto 0; position: relative; top: 50%; }
+
+/*scroll bar end*/
+
+#editorArea{
+	width: 1000px;
+	height: 650px;
+}
+
+#treeBrowser{
+	position: absolute;
+	float: right;
+	background-color: #AFE7FA; 
+	width: 350px; 
+	height: 500px;
+	margin-left: 72%;
+    top: 150px;
+	border-radius: 5px;
+}
